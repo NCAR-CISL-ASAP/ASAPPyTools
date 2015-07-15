@@ -104,5 +104,5 @@ class VPrinter(object):
         if 'verbosity' in kwargs and type(kwargs['verbosity']) is int:
             verbosity = kwargs['verbosity']
 
-        if verbosity < self.verbosity:
+        if verbosity <= self.verbosity:
             print self.to_str(*args, **kwargs)
