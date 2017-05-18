@@ -343,7 +343,7 @@ class SimpleComm(object):
         """
         if (isinstance(data, dict)):
             totals = {}
-            for k, v in list(data.items()):
+            for k, v in data.items():
                 totals[k] = SimpleComm.allreduce(self, v, op)
             return totals
         elif self._is_ndarray(data):
@@ -623,10 +623,10 @@ class SimpleCommMPI(SimpleComm):
             if self.is_manager():
                 all_dict = defaultdict(list)
                 for d in all_list:
-                    for k, v in list(d.items()):
+                    for k, v in d.items():
                         all_dict[k].append(v)
                 result = {}
-                for k, v in list(all_dict.items()):
+                for k, v in all_dict.items():
                     result[k] = SimpleComm.allreduce(self, v, op)
                 return self._comm.bcast(result)
             else:

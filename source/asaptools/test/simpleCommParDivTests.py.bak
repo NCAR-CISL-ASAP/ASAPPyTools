@@ -5,7 +5,7 @@ Copyright 2016, University Corporation for Atmospheric Research
 See the LICENSE.txt file for details
 """
 
-
+from __future__ import print_function
 
 import unittest
 
@@ -274,9 +274,9 @@ class SimpleCommParDivTests(unittest.TestCase):
             actual = [self.monocomm.collect()
                       for _ in range(1, self.monocomm.get_size())]
             expected = [i for i in
-                        enumerate(list(range(len(self.groups) + self.color,
+                        enumerate(range(len(self.groups) + self.color,
                                         self.gsize,
-                                        len(self.groups))), 1)]
+                                        len(self.groups)), 1)]
         else:
             data = self.grank
             actual = self.monocomm.collect(data)
@@ -319,9 +319,9 @@ class SimpleCommParDivTests(unittest.TestCase):
             actual = [self.monocomm.collect()
                       for _ in range(1, self.monocomm.get_size())]
             expected = [(i, list(range(x))) for i, x in
-                        enumerate(list(range(len(self.groups) + self.color,
+                        enumerate(range(len(self.groups) + self.color,
                                         self.gsize,
-                                        len(self.groups))), 1)]
+                                        len(self.groups)), 1)]
         else:
             data = list(range(self.grank))
             actual = self.monocomm.collect(data)
@@ -452,7 +452,7 @@ if __name__ == "__main__":
     MPI_COMM_WORLD.Barrier()
 
     try:
-        from io import StringIO
+        from cStringIO import StringIO
     except ImportError:
         from io import StringIO
     

@@ -5,7 +5,7 @@ Copyright 2016, University Corporation for Atmospheric Research
 See the LICENSE.txt file for details
 """
 
-
+from __future__ import print_function
 
 import unittest
 import sys
@@ -13,7 +13,7 @@ import sys
 from asaptools import vprinter
 from os import linesep
 try:
-    from io import StringIO
+    from cStringIO import StringIO
 except ImportError:
     from io import StringIO
 

@@ -5,7 +5,7 @@ Copyright 2016, University Corporation for Atmospheric Research
 See the LICENSE.txt file for details
 """
 
-from __future__ import print_function
+
 
 import unittest
 from asaptools import partition
@@ -88,7 +88,7 @@ class partitionTests(unittest.TestCase):
             expected.reverse()
             expected = expected[inp[1]::inp[2]]
             msg = test_info_msg(
-                'SortedStride', zip(inp[0], weights), inp[1], inp[2], actual, expected)
+                'SortedStride', list(zip(inp[0], weights)), inp[1], inp[2], actual, expected)
             print(msg)
             self.assertEqual(actual, expected, msg)
 
@@ -102,7 +102,7 @@ class partitionTests(unittest.TestCase):
             actual = set(pfunc(list(zip(inp[0], weights)), inp[1], inp[2]))
             expected = results[ii]
             msg = test_info_msg(
-                'WeightBalanced', zip(inp[0], weights), inp[1], inp[2], actual, expected)
+                'WeightBalanced', list(zip(inp[0], weights)), inp[1], inp[2], actual, expected)
             print(msg)
             self.assertEqual(actual, expected, msg)
 

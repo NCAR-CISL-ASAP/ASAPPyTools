@@ -10,7 +10,7 @@ Copyright 2016, University Corporation for Atmospheric Research
 See the LICENSE.txt file for details
 """
 
-
+from __future__ import print_function
 
 import unittest
 import numpy as np
@@ -71,7 +71,7 @@ class SimpleCommP1STests(unittest.TestCase):
         self.assertEqual(sresult, presult, msg)
 
     def testSumList(self):
-        data = list(range(5))
+        data = range(5)
         sresult = self.scomm.allreduce(data, 'sum')
         presult = self.pcomm.allreduce(data, 'sum')
         msg = test_info_msg('sum(list)', data, sresult, presult)
@@ -79,7 +79,7 @@ class SimpleCommP1STests(unittest.TestCase):
         self.assertEqual(sresult, presult, msg)
 
     def testSumDict(self):
-        data = {'rank': self.rank, 'range': list(range(3 + self.rank))}
+        data = {'rank': self.rank, 'range': range(3 + self.rank)}
         sresult = self.scomm.allreduce(data, 'sum')
         presult = self.pcomm.allreduce(data, 'sum')
         msg = test_info_msg('sum(list)', data, sresult, presult)
@@ -103,7 +103,7 @@ class SimpleCommP1STests(unittest.TestCase):
         self.assertEqual(sresult, presult, msg)
 
     def testMaxList(self):
-        data = list(range(5 + self.rank))
+        data = range(5 + self.rank)
         sresult = self.scomm.allreduce(data, 'max')
         presult = self.pcomm.allreduce(data, 'max')
         msg = test_info_msg('max(list)', data, sresult, presult)
@@ -111,7 +111,7 @@ class SimpleCommP1STests(unittest.TestCase):
         self.assertEqual(sresult, presult, msg)
 
     def testMaxDict(self):
-        data = {'rank': self.rank, 'range': list(range(3 + self.rank))}
+        data = {'rank': self.rank, 'range': range(3 + self.rank)}
         sresult = self.scomm.allreduce(data, 'max')
         presult = self.pcomm.allreduce(data, 'max')
         msg = test_info_msg('max(dict)', data, sresult, presult)
@@ -143,7 +143,7 @@ class SimpleCommP1STests(unittest.TestCase):
         self.assertEqual(sresult, presult, msg)
 
     def testPartitionList(self):
-        data = list(range(5 + self.rank))
+        data = range(5 + self.rank)
         sresult = self.scomm.partition(data, func=EqualStride())
         presult = self.pcomm.partition(data, func=EqualStride())
         msg = test_info_msg('partition(list)', data, sresult, presult)
@@ -151,7 +151,7 @@ class SimpleCommP1STests(unittest.TestCase):
         self.assertEqual(sresult, presult, msg)
 
     def testPartitionListInvolved(self):
-        data = list(range(5 + self.rank))
+        data = range(5 + self.rank)
         sresult = self.scomm.partition(data, func=EqualStride(), involved=True)
         presult = self.pcomm.partition(data, func=EqualStride(), involved=True)
         msg = test_info_msg('partition(list, T)', data, sresult, presult)
@@ -210,7 +210,7 @@ if __name__ == "__main__":
     MPI_COMM_WORLD.Barrier()
 
     try:
-        from io import StringIO
+        from cStringIO import StringIO
     except ImportError:
         from io import StringIO
     

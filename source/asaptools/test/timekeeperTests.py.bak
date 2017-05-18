@@ -5,7 +5,7 @@ Copyright 2016, University Corporation for Atmospheric Research
 See the LICENSE.txt file for details
 """
 
-
+from __future__ import print_function
 
 import unittest
 
@@ -121,10 +121,10 @@ class TimeKeeperTests(unittest.TestCase):
         all_times = tk.get_all_times()
         expected_all_times = {name1: 3 * wait_time,
                               name2: 2 * wait_time}
-        self.assertTrue(len(list(expected_all_times.keys())) == len(list(all_times.keys())),
+        self.assertTrue(len(expected_all_times.keys()) == len(all_times.keys()),
                         'Different number of time clonk names')
         self.assertTrue(all([i1==i2 for i1,i2 in 
-                             zip(list(expected_all_times.keys()),list(all_times.keys()))]),
+                             zip(expected_all_times.keys(),all_times.keys())]),
                         'Clock names are not the same')
         self.assertAlmostEqual(list(expected_all_times.values())[0],
                                list(all_times.values())[0],
